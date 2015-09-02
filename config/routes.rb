@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'pages#home'
   get "about" => "pages#about" #creates about_path
+
+  #This will keep you from getting a Routing Error due to missing javascript
+  devise_scope :user do get '/users/sign_out' => 'devise/sessions#destroy' end
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
